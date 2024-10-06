@@ -1485,7 +1485,9 @@ end
 
 --- getElementPosition
 --- Type: shared
----@return any
+---@return number x
+---@return number y
+---@return number z
 ---@param theElement element
 function getElementPosition(theElement)
 end
