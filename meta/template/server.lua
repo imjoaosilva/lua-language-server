@@ -121,7 +121,7 @@ end
 --- Type: server
 ---@return any
 ---@param username string
----@param password string
+---@param password? string
 ---@param caseSensitive? boolean
 function getAccount(username, password, caseSensitive)
 end
