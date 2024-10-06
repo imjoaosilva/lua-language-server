@@ -27,8 +27,7 @@
 			"request": "attach",
 			"stopOnEntry": false,
 			"address": "127.0.0.1:11428",
-			"outputCapture": [
-			],
+			"outputCapture": [],
 			"sourceFormat": "string",
 			"sourceMaps": [
 				[
@@ -58,8 +57,7 @@
 			"cpath": "${workspaceFolder}/bin/?.dll;${workspaceFolder}/bin/?.so",
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "openOnSessionStart",
-			"arg": [
-			],
+			"arg": [],
 			"luaVersion": "lua-latest",
 			"sourceCoding": "utf8",
 			"outputCapture": [
@@ -80,8 +78,7 @@
 			"cpath": "${workspaceFolder}/bin/?.dll;${workspaceFolder}/bin/?.so",
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "openOnSessionStart",
-			"arg": [
-			],
+			"arg": [],
 			"luaVersion": "lua-latest",
 			"sourceCoding": "utf8",
 			"outputCapture": [
@@ -102,8 +99,7 @@
 			"cpath": "${workspaceFolder}/bin/?.dll;${workspaceFolder}/bin/?.so",
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "openOnSessionStart",
-			"arg": [
-			],
+			"arg": [],
 			"luaVersion": "lua-latest",
 			"sourceCoding": "utf8",
 			"outputCapture": [
@@ -155,5 +151,35 @@
 				"stderr",
 			],
 		},
-	]
+		{
+			"name": "🚀 Testar Autocomplete (Nova Janela)",
+			"type": "lua",
+			"request": "launch",
+			"stopOnEntry": false,
+			"luaexe": "${workspaceFolder}/bin/lua-language-server",
+			"windows": {
+				"luaexe": "${workspaceFolder}/bin/lua-language-server.exe"
+			},
+			"program": "${workspaceRoot}/test.lua",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "openOnSessionStart",
+			"outputCapture": [
+				"print",
+				"stderr"
+			],
+			"args": [],
+			"postDebugTask": "openNewWindow"
+		}
+	],
+	"tasks": {
+		"openNewWindow": {
+			"type": "shell",
+			"command": "code",
+			"args": [
+				"--new-window",
+				"${workspaceFolder}"
+			],
+			"problemMatcher": []
+		}
+	}
 }

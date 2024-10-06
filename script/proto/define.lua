@@ -11,9 +11,9 @@ m.DiagnosticSeverity = {
 }
 
 m.DiagnosticFileStatus = {
-    Any        = 1,
-    Opened     = 2,
-    None       = 3,
+    Any    = 1,
+    Opened = 2,
+    None   = 3,
 }
 
 --- 诊断类型与默认等级
@@ -186,7 +186,19 @@ m.BuiltIn = {
     ['table.clear']   = 'default',
     ['utf8']          = 'default',
     ['string.buffer'] = 'default',
+
+    ['client']        = 'default',
+    ["deprecated"]    = 'default',
+    ["dx"]            = 'default',
+    ["engine"]        = 'default',
+    ["gui"]           = 'default',
+    ["ped"]           = 'default',
+    ["server"]        = 'default',
+    ["shared"]        = 'default',
+    ["vehicle"]       = 'default',
 }
+
+
 
 m.InlayHintKind = {
     Other     = 0,

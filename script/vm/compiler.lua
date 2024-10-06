@@ -1,11 +1,11 @@
-local guide      = require 'parser.guide'
-local util       = require 'utility'
-local config     = require 'config'
-local rpath      = require 'workspace.require-path'
-local files      = require 'files'
+local guide  = require 'parser.guide'
+local util   = require 'utility'
+local config = require 'config'
+local rpath  = require 'workspace.require-path'
+local files  = require 'files'
 ---@class vm
-local vm         = require 'vm.vm'
-local plugin     = require 'plugin'
+local vm     = require 'vm.vm'
+local plugin = require 'plugin'
 
 ---@class parser.object
 ---@field _compiledNodes        boolean
@@ -196,7 +196,7 @@ local searchFieldSwitch = util.switch()
                 end
             end
             if field.type == 'varargs' then
-                if not hasFiled
+                if  not hasFiled
                 and type(key) == 'number'
                 and key >= 1
                 and math.tointeger(key) then
@@ -212,7 +212,7 @@ local searchFieldSwitch = util.switch()
         if docs then
             for _, doc in ipairs(docs) do
                 if doc.type == 'doc.enum' then
-                    if not vm.docHasAttr(doc, 'partial')  then
+                    if not vm.docHasAttr(doc, 'partial') then
                         return
                     end
                     for _, def in ipairs(vm.getDefs(doc)) do
@@ -282,9 +282,9 @@ local searchFieldSwitch = util.switch()
                         if key == vm.ANY
                         or fn.name == 'any'
                         or (fn.name == 'boolean' and type(key) == 'boolean')
-                        or (fn.name == 'number'  and type(key) == 'number')
+                        or (fn.name == 'number' and type(key) == 'number')
                         or (fn.name == 'integer' and math.tointeger(key))
-                        or (fn.name == 'string'  and type(key) == 'string') then
+                        or (fn.name == 'string' and type(key) == 'string') then
                             pushResult(field, true)
                         end
                     elseif fn.type == 'doc.type.string'
@@ -476,8 +476,8 @@ function vm.getClassFields(suri, object, key, pushResult)
                             if  not searchedFields[fieldKey]
                             and guide.isAssign(field)
                             and field.value then
-                                if  vm.getVariableID(field)
-                                and vm.getVariableID(field) == vm.getVariableID(field.value) then
+                                if     vm.getVariableID(field)
+                                and    vm.getVariableID(field) == vm.getVariableID(field.value) then
                                 elseif vm.getGlobalNode(src)
                                 and    vm.getGlobalNode(src) == vm.getGlobalNode(field.value) then
                                 else
@@ -592,7 +592,7 @@ local function getReturnOfSetMetaTable(args)
         end)
     end
     --过滤nil
-   node:remove 'nil'
+    node:remove 'nil'
     return node
 end
 
@@ -698,7 +698,7 @@ function vm.bindAs(source)
         return false
     end
 
-    local max = #ases
+    local max   = #ases
     local index
     local left  = 1
     local right = max
@@ -749,7 +749,7 @@ function vm.getNodesOfParentNode(source, key)
     for node in parentNode:eachObject() do
         if not hasClass
         or (
-                node.type == 'global'
+            node.type == 'global'
             and node.cate == 'type'
             ---@cast node vm.global
             and not guide.isBasicType(node.name)
@@ -881,7 +881,7 @@ local function selectNode(source, list, index)
                 rtnNode:merge(n)
             end
             if n.type == 'global' and n.cate == 'type' then
-                if  n.name ~= 'any' then
+                if n.name ~= 'any' then
                     rtnNode:merge(n)
                 end
             else
@@ -904,7 +904,7 @@ local function isValidCallArgNode(source, node)
     end
     if source.type == 'table' then
         return node.type == 'doc.type.table' or node.type == 'doc.type.array'
-            or (    node.type == 'global'
+            or (node.type == 'global'
                 and node.cate == 'type'
                 ---@cast node vm.global
                 and not guide.isBasicType(node.name)
@@ -1076,12 +1076,12 @@ local function compileForVars(source, target)
             type = 'dummyfunc',
             parent = source,
         }
-        source._iterArgs = {{},{}}
+        source._iterArgs = { {}, {} }
         source._iterVars = {}
     end
     -- iterator
     if not vm.getNode(source._iterator) then
-        selectNode(source._iterator,    source.exps, 1)
+        selectNode(source._iterator, source.exps, 1)
     end
     -- status
     if not vm.getNode(source._iterArgs[1]) then
@@ -1151,7 +1151,7 @@ local function compileFunctionParam(func, source)
         ]]
         local found = false
         for n in funcNode:eachObject() do
-            if (n.type == 'doc.type.function' or n.type == 'function')
+            if  (n.type == 'doc.type.function' or n.type == 'function')
             and n.args[aindex] and n.args[aindex] ~= source
             then
                 local argNode = vm.compileNode(n.args[aindex])
@@ -1408,8 +1408,8 @@ local compilerSwitch = util.switch()
         or source.parent.type == 'setindex' then
             local parentNode = vm.compileNode(source.parent)
             for _, pn in ipairs(parentNode) do
-                if  pn.type == 'global'
-                and pn.cate == 'type' then
+                if     pn.type == 'global'
+                and    pn.cate == 'type' then
                     ---@cast pn vm.global
                     if not guide.isBasicType(pn.name) then
                         vm.setNode(source, pn)
@@ -1626,7 +1626,6 @@ local compilerSwitch = util.switch()
                 vm.setNode(source, vm.compileNode(source.value))
             end
         end
-
     end)
     : case 'field'
     : case 'method'
@@ -1816,8 +1815,8 @@ local compilerSwitch = util.switch()
         local funcNode = vm.compileNode(func)
         ---@type vm.node?
         for nd in funcNode:eachObject() do
-            if nd.type == 'function'
-            or nd.type == 'doc.type.function' then
+            if     nd.type == 'function'
+            or     nd.type == 'doc.type.function' then
                 ---@cast nd parser.object
                 bindReturnOfFunction(source, nd, index, args)
             elseif nd.type == 'global' and nd.cate == 'type' then
@@ -1900,8 +1899,8 @@ local compilerSwitch = util.switch()
     : call(function (source)
         if source[1] == 'self' then
             local state = guide.getDocState(source)
-            if state.type == 'doc.return'
-            or state.type == 'doc.param' then
+            if     state.type == 'doc.return'
+            or     state.type == 'doc.param' then
                 local func = state.bindSource
                 if func and func.type == 'function' then
                     local node = guide.getFunctionSelfNode(func)
@@ -2115,7 +2114,7 @@ local function compileByNode(source)
     compilerSwitch(source.type, source)
 end
 
-local nodeSwitch;nodeSwitch = util.switch()
+local nodeSwitch; nodeSwitch = util.switch()
     : case 'field'
     : case 'method'
     : call(function (source, lastKey, pushResult)
