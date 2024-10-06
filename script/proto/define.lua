@@ -186,7 +186,6 @@ m.BuiltIn = {
     ['table.clear']   = 'default',
     ['utf8']          = 'default',
     ['string.buffer'] = 'default',
-
     ['client']        = 'default',
     ["deprecated"]    = 'default',
     ["dx"]            = 'default',
@@ -196,6 +195,7 @@ m.BuiltIn = {
     ["server"]        = 'default',
     ["shared"]        = 'default',
     ["vehicle"]       = 'default',
+    ["typesmtasa"]    = "default"
 }
 
 
