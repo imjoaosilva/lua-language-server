@@ -2235,15 +2235,13 @@ end
 --- iprint
 --- Type: shared
 ---@return any
----@param var1 mixed
----@param var2 mixed
----@param var3 mixed
-function iprint(var1, var2, var3)
+---@param ... any
+function iprint(...)
 end
 
 --- getDistanceBetweenPoints2D
 --- Type: shared
----@return any
+---@return number
 ---@param x1 float
 ---@param y1 float
 ---@param x2 float
