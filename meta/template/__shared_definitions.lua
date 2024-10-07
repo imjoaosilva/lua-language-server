@@ -222,12 +222,12 @@ function isCursorShowing() end
 ---@type showCursor_server | showCursor_client Returns true if the player's cursor was shown or hidden successfully
 function showCursor() end
 
---- Serverside
----@alias removeEventHandler_server fun(eventName: eventName_server, attachedTo: element, functionVar: function): boolean
---- Clientside
----@alias removeEventHandler_client fun(eventName: eventName_client, attachedTo: element, functionVar: function): boolean
----@type removeEventHandler_server | removeEventHandler_client Returns true if the event handler was removed successfully. Returns false if the specified event handler could not be found.
-function removeEventHandler() end
+--- removeEventHandler
+--- Type: shared
+--- @param eventName Events
+--- @param attachedTo element
+--- @param handlerFunction function
+function removeEventHandler(eventName, attachedTo, handlerFunction) end
 
 ---@type fun(node: xmlnode, name: string): string Returns the attribute in string form or false, if the attribute is not defined.
 function xmlNodeGetAttribute() end
