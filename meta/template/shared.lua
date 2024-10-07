@@ -84,7 +84,7 @@ end
 --- Type: shared
 ---@return any
 ---@param filePath string
----@param readOnly boolean
+---@param readOnly? boolean
 function xmlLoadFile(filePath, readOnly)
 end
 
