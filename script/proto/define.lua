@@ -195,7 +195,10 @@ m.BuiltIn = {
     ['__gui_definitions']                    = 'default',
     ['__server_definitions']                 = 'default',
     ['__shared_definitions_addEventHandler'] = 'default',
-    ['__shared_definitions']                 = 'default'
+    ['__shared_definitions']                 = 'default',
+    ['__client_type_definitions']                 = 'default',
+    ['__server_type_definitions']                 = 'default',
+    ['__shared_type_definitions']                 = 'default',
 }
 
 

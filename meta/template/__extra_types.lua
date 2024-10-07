@@ -9,12 +9,3 @@
 
 --- Used to define unknown data from JSON
 ---@alias unknownFromJSON boolean|string|number|integer|table|nil
-
----@type player 
-localPlayer = localPlayer
-
----@type resource
-resourceRoot = root
-root = root
-
----@alias var  number | string | boolean

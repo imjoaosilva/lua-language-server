@@ -2162,8 +2162,15 @@ function isOOPEnabled() end
 ---@type fun(objectToReference: any): integer Returns an int if the reference were successfully created.
 function ref() end
 
----@type fun(red: integer, green: integer, blue: integer, alpha?: integer): color Returns a single value representing the color.
-function tocolor() end
+--- tocolor
+--- Type: shared
+---@return any
+---@param red integer
+---@param green integer
+---@param blue integer
+---@param alpha? integer
+function tocolor(red, green, blue, alpha)
+end
 
 ---@type fun(xmlString: string): xmlnode | false Returns the root xmlnode object of an xml string if successful, or false otherwise (invalid XML string).
 function xmlLoadString() end
