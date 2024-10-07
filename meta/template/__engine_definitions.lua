@@ -12,7 +12,7 @@ function engineReplaceModel() end
 ---@type fun(nameFilter?: string, modelId?: string): string[] Returns a table of texture names.
 function engineGetVisibleTextureNames() end
 
----@type fun(rawDataOrColFile: string): col | false Returns a COL if the file was loaded, false otherwise.
+---@type fun(rawDataOrColFile: string): col Returns a COL if the file was loaded, false otherwise.
 function engineLoadCOL() end
 
 ---@type fun(shader: element, textureName: string, targetElement?: element): boolean Returns true if the shader was successfully removed, false otherwise.
@@ -24,7 +24,7 @@ function engineImportTXD() end
 ---@type fun(modelId?: string): string[] Returns a table if this function succeeds.
 function engineGetModelTextureNames() end
 
----@type fun(model: integer): number | false Returns a float representing the LOD distance of the model, or false if the model argument is incorrect.
+---@type fun(model: integer): number Returns a float representing the LOD distance of the model, or false if the model argument is incorrect.
 function engineGetModelLODDistance() end
 
 ---@type fun(enable: boolean, force: boolean): boolean Returns true if the function executed successfully, false otherwise.
@@ -33,16 +33,16 @@ function engineSetAsynchronousLoading() end
 ---@type fun(modelId: integer): boolean | nil Returns true if this function succeeds, false or nil if it fails for some reason.
 function engineRestoreCOL() end
 
----@type fun(rawDataOrTxdFile : string, filteringEnabled?: boolean): txd | false Returns a TXD if the file was loaded, false otherwise.
+---@type fun(rawDataOrTxdFile : string, filteringEnabled?: boolean): txd Returns a TXD if the file was loaded, false otherwise.
 function engineLoadTXD() end
 
 ---@type fun(theCol: col, modelId: integer): boolean | nil Returns true if the collision was successfully replaced, false or nil if the collision could not be replaced for a reason.
 function engineReplaceCOL() end
 
----@type fun(rawDataOrDffFile: string): dff | false Returns a DFF element if the dff file loaded, false otherwise.
+---@type fun(rawDataOrDffFile: string): dff Returns a DFF element if the dff file loaded, false otherwise.
 function engineLoadDFF() end
 
----@type fun(modelId: integer): string | false Returns a string with the name of the object model, false otherwise.
+---@type fun(modelId: integer): string Returns a string with the name of the object model, false otherwise.
 function engineGetModelNameFromID() end
 
 ---@type fun(modelId: integer): boolean | nil Returns true if the model was successfully restored, false or nil if it failed for some reason.
@@ -51,13 +51,13 @@ function engineRestoreModel() end
 ---@type fun(shader: element, textureName: string, targetElement?: element, appendLayers?: boolean): boolean Returns true if the shader was successfully applied, false otherwise.
 function engineApplyShaderToWorldTexture() end
 
----@type fun(modelName: string): integer | false Returns an int with the ID of the object model, false otherwise.
+---@type fun(modelName: string): integer Returns an int with the ID of the object model, false otherwise.
 function engineGetModelIDFromName() end
 
 ---@type fun(modelId: integer, distance: number, extendedLod?: boolean): boolean Returns true if the function executed succesfully, false otherwise.
 function engineSetModelLODDistance() end
 
----@type fun(ifpFilePath: string, CustomBlockName: string): ifp | false Returns an IFP element if the IFP file loaded, false otherwise.
+---@type fun(ifpFilePath: string, CustomBlockName: string): ifp Returns an IFP element if the IFP file loaded, false otherwise.
 function engineLoadIFP() end
 
 ---@type fun(thePed: ped, internalBlockName: string, internalAnimName: string, customBlockName: string, customAnimName: string): boolean Returns true on success, false in case of failure.
@@ -84,13 +84,13 @@ function engineRestoreObjectGroupPhysicalProperties() end
 ---@type fun(groupId: integer, property: string, newValue: any): boolean Returns true if everything went well, error is raised otherwise.
 function engineSetObjectGroupPhysicalProperty() end
 
----@type fun(elementType: "ped" | "vehicle" | "object" | "timed-object" | "clump", parentID?: integer): integer | false Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
+---@type fun(elementType: "ped" | "vehicle" | "object" | "timed-object" | "clump", parentID?: integer): integer Returns an integer of the model ID that was available to be assigned to the element type, false if no free model ID available or invalid element type. Do not rely on the model numbers returned being consistent across multiple clients or multiple runs of resources. There is no guarantee for the order of the numbers or that the same numbers will always correspond to the same element type. Any patterns are coincidental.
 function engineRequestModel() end
 
 ---@type fun(modelId: integer): boolean Returns true if the model was successfully freed, false otherwise.
 function engineFreeModel() end
 
----@type fun(modelNameOrModelId: string | integer, textureNames?: string | string[]): {[string]: texture} | false Returns a table of texture elements [textureName, texture], false otherwise.
+---@type fun(modelNameOrModelId: string | integer, textureNames?: string | string[]): {[string]: texture} Returns a table of texture elements [textureName, texture], false otherwise.
 function engineGetModelTextures() end
 
 ---@type fun(surfaceId: integer, property: string, value: any): boolean Returns true if the function executed succesfully, false otherwise.
@@ -161,7 +161,7 @@ function engineImageGetFilesCount() end
 ---@type fun(img: userdata): string[]
 function engineImageGetFiles() end
 
----@type fun(img: userdata, fileIdOrName: integer | string): string | false
+---@type fun(img: userdata, fileIdOrName: integer | string): string
 function engineImageGetFile() end
 
 ---@type fun(img: userdata, filePath: string, modelId: integer): boolean

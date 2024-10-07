@@ -6,7 +6,7 @@
     Credits to the community for all the available syntax and descriptions
 ]]
 
----@type fun(filepath: string, size?: integer, bold?: boolean, quality?: string): font | false Returns a DX font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available.
+---@type fun(filepath: string, size?: integer, bold?: boolean, quality?: string): font Returns a DX font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available.
 function dxCreateFont() end
 
 ---@type fun(pixels: string, x: integer, y: integer): r: integer, g: integer, b: integer, a: integer Returns 4 ints representing the rgba color value of the pixel if succesful.
@@ -24,7 +24,7 @@ function dxGetPixelsSize() end
 ---@type fun(theShader: element, tessellationX: integer, tessellationY: integer): boolean Returns true if the shader element's tessellation was successfully changed, false otherwise.
 function dxSetShaderTessellation() end
 
----@type fun(width: integer, height: integer): element | false Returns a texture element if successful, may fail due to hardware or memory limitations and returns false.
+---@type fun(width: integer, height: integer): element Returns a texture element if successful, may fail due to hardware or memory limitations and returns false.
 function dxCreateScreenSource() end
 
 ---@type (fun(filepathOrPixels: string, textureFormat?: textureFormat, mipmaps?: boolean, textureEdge?: textureEdge): element) |  (fun(width: integer, height: integer, textureFormat?: textureFormat, textureEdge?: textureEdge, textureType?: textureType, depth?: integer): element) Returns a texture if successful
@@ -36,7 +36,7 @@ function dxDrawLine3D() end
 ---@type fun(startX: integer, startY: integer, endX: integer, endY: integer, color: integer, width?: number, postGUI?: boolean): boolean Returns a true if the operation was successful, false otherwise.
 function dxDrawLine() end
 
----@type (fun(filepathOrRaw_data: string): shader: element | false, name: string) | (fun(filepathOrRaw_data: string, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element | false, name: string) | (fun(filepathOrRaw_data: string, macros?: table, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element | false, name: string) A shader element if successful, false if invalid arguments were passed to the function. The name of the technique that will be used. Element types: A comma seperated list of element types to restrict this shader to.
+---@type (fun(filepathOrRaw_data: string): shader: element, name: string) | (fun(filepathOrRaw_data: string, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element, name: string) | (fun(filepathOrRaw_data: string, macros?: table, priority?: number, maxDistance?: number, layered?: boolean, elementTypes?: exampleShaderElementTypes|string): shader:element, name: string) A shader element if successful, false if invalid arguments were passed to the function. The name of the technique that will be used. Element types: A comma seperated list of element types to restrict this shader to.
 function dxCreateShader() end
 
 ---@type fun(material: element): width: integer, height: integer, depth: integer? Returns two ints representing the width and height in pixels of the material.  If the material is a volume texture, this function will return three ints representing the width, height and depth.
@@ -65,7 +65,7 @@ function dxUpdateScreenSource() end
 ---@type dxSetShaderValue_syntax_number | dxSetShaderValue_syntax_other Returns true if the shader element's parameter was successfully changed, false otherwise.
 function dxSetShaderValue() end
 
----@type (fun(width: integer, height: integer, withAlpha?: boolean): element | false) | (fun(width: integer, height: integer, surfaceFormat?: unknown): element | false)
+---@type (fun(width: integer, height: integer, withAlpha?: boolean): element) | (fun(width: integer, height: integer, surfaceFormat?: unknown): element)
 function dxCreateRenderTarget() end
 
 ---@type fun(text: string, scale?: number, font?: mixFont, bColorCoded?: boolean): number Returns the float of the width of the text (in pixels).

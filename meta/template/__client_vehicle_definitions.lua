@@ -50,10 +50,10 @@ function getVehicleComponentVisible() end
 ---@type fun(theVehicle: vehicle): number, number, number Returns the x, y and z components of the gravity vector if successful
 function getVehicleGravity() end
 
----@type fun(theVehicle: vehicle): integer | false Returns an integer determining the amount of nitro counts of the vehicle, false if there is no nitro in the vehicle.
+---@type fun(theVehicle: vehicle): integer Returns an integer determining the amount of nitro counts of the vehicle, false if there is no nitro in the vehicle.
 function getVehicleNitroCount() end
 
----@type fun(theVehicle: vehicle): number | false Returns a float determining the nitro level (ranges from 0.0001 to 1.0) of the vehicle, false if there is no nitro in the vehicle.
+---@type fun(theVehicle: vehicle): number Returns a float determining the nitro level (ranges from 0.0001 to 1.0) of the vehicle, false if there is no nitro in the vehicle.
 function getVehicleNitroLevel() end
 
 ---@type fun(theVehicle: vehicle): integer Returns the gear if successful

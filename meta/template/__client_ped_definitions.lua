@@ -27,13 +27,13 @@ function canPedBeKnockedOffBike() end
 ---@type fun(thePed: ped, weapon: integer, ammo?: integer, setAsCurrent?: boolean): boolean Returns true if weapon was successfully given to the ped, false otherwise.
 function givePedWeapon() end
 
----@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target collides, or false if it was unsuccessful.
+---@type fun(targetingPed: ped): number, number, number Returns three floats, x,y,z, representing the position where the ped's target collides, or false if it was unsuccessful.
 function getPedTargetCollision() end
 
 --- Primary
----@alias getPedTask_primary fun(thePed: ped, priority: "primary", taskType: primaryTaskType): pedComplexTask | false, pedComplexTask | false, pedComplexTask | false, pedComplexTask | false
+---@alias getPedTask_primary fun(thePed: ped, priority: "primary", taskType: primaryTaskType): pedComplexTask, pedComplexTask, pedComplexTask, pedComplexTask
 --- Secondary
----@alias getPedTask_secondary fun(thePed: ped, priority: "secondary", taskType: secondaryTaskType): pedComplexTask | false, pedComplexTask | false, pedComplexTask | false, pedComplexTask | false
+---@alias getPedTask_secondary fun(thePed: ped, priority: "secondary", taskType: secondaryTaskType): pedComplexTask, pedComplexTask, pedComplexTask, pedComplexTask
 ---@see primaryTaskType
 ---@see secondaryTaskType
 ---@type getPedTask_primary | getPedTask_secondary
@@ -51,13 +51,13 @@ function setPedTargetingMarkerEnabled() end
 ---@type fun(thePed: ped, control: controlName, state: boolean): boolean Returns true if successful, false if otherwise.
 function setPedControlState() end
 
----@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target starts, or false if it was unsuccessful.
+---@type fun(targetingPed: ped): number, number, number Returns three floats, x,y,z, representing the position where the ped's target starts, or false if it was unsuccessful.
 function getPedTargetStart() end
 
 ---@type fun(thePed: ped, control: controlName): boolean Returns true if the ped is pressing the specified control, false if not or an invalid argument was passed.
 function getPedControlState() end
 
----@type fun(targetingPed: ped): number | false, number | false, number | false Returns three floats, x,y,z, representing the position where the ped's target ends according to his range, or false if it was unsuccessful.
+---@type fun(targetingPed: ped): number, number, number Returns three floats, x,y,z, representing the position where the ped's target ends according to his range, or false if it was unsuccessful.
 function getPedTargetEnd() end
 
 ---@type fun(thePed: ped, voiceType: string, voiceName: string): boolean Returns true when the voice was successfully set, false otherwise.
@@ -66,7 +66,7 @@ function setPedVoice() end
 ---@type fun(thePed: ped, controlName: controlName): number Returns a float between 0 (full release) and 1 (full push) indicating the amount the control is pushed.
 function getPedAnalogControlState() end
 
----@type fun(thePed: ped): string | false Returns a string indicating the ped's move state, or false if the ped is not streamed in, the movement type is unknown, the ped is in a vehicle or the ped is invalid.
+---@type fun(thePed: ped): string Returns a string indicating the ped's move state, or false if the ped is not streamed in, the movement type is unknown, the ped is in a vehicle or the ped is invalid.
 function getPedMoveState() end
 
 ---@type fun(thePed: ped): number A float with the oxygen level.

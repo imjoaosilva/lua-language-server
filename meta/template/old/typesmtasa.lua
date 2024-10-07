@@ -60,7 +60,6 @@ resourceRoot = resourceRoot
 source = source
 client = client
 exports = any
-tr4jado = "viado"
 
 
 ---@alias Button 'left' | 'middle' | 'right'

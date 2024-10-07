@@ -12,7 +12,7 @@ function guiMoveToBack() end
 ---@type fun(guielement: element, alpha: number): boolean Returns true if the gui element's alpha was successfully changed, false otherwise.
 function guiSetAlpha() end
 
----@type fun(filepath: string, size?: integer): element | false Returns a GUI font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available.
+---@type fun(filepath: string, size?: integer): element Returns a GUI font element if successful, false if invalid arguments were passed to the function, or there is insufficient resources available.
 function guiCreateFont() end
 
 ---@type fun(guiElement: element): boolean Returns true if the element is enabled, false otherwise.
@@ -21,7 +21,7 @@ function guiGetEnabled() end
 ---@type fun(): boolean Returns true if input is focused on GUI, false if it's focused on the game.
 function guiGetInputEnabled() end
 
----@type fun(guiElement: element): string | guiFont, element | nil A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
+---@type fun(guiElement: element): string | guiFont, element A string containing the name of the element's current font. The custom GUI font that is used, or nil otherwise.
 function guiGetFont() end
 
 ---@type fun(): inputMode
@@ -84,7 +84,7 @@ function guiSetText() end
 ---@type fun(theElement: element, x: number, y: number, relative: boolean): boolean Returns true if the position has been successfully set, false otherwise.
 function guiSetPosition() end
 
----@type fun(x: number, y: number, width: number, height: number, isLocal: boolean, isTransparent: boolean, isRelative?: boolean, parent?: element): guiBrowser | false Returns a gui-browser element if it was created successfully. Returns also false, if the user disabled remote pages and isLocal was set to false.
+---@type fun(x: number, y: number, width: number, height: number, isLocal: boolean, isTransparent: boolean, isRelative?: boolean, parent?: element): guiBrowser Returns a gui-browser element if it was created successfully. Returns also false, if the user disabled remote pages and isLocal was set to false.
 function guiCreateBrowser() end
 
 ---@type fun(theBrowser: guiBrowser): browser Returns the Browser element if a correct gui-browser has been passed.
@@ -162,7 +162,7 @@ function guiGridListClear() end
 ---@type fun(gridList: element, rowIndex: integer, columnIndex: integer): unknownSyncAble Returns the item data of the specified item if succesful.
 function guiGridListGetItemData() end
 
----@type fun(gridList: element, rowIndex: integer, columnIndex: integer): string | false Returns the text of the item if the arguments are right, false otherwise.
+---@type fun(gridList: element, rowIndex: integer, columnIndex: integer): string Returns the text of the item if the arguments are right, false otherwise.
 function guiGridListGetItemText() end
 
 ---@type fun(gridList: element): integer Returns the number of rows if the function is successful.
@@ -307,7 +307,7 @@ function guiStaticImageLoadImage() end
 ---@type fun(x: number, y: number, width: number, height: number, relative: boolean, parent?: element): element
 function guiCreateTabPanel() end
 
----@type fun(tabPanel: element): element | nil Returns an element of the tab if a tab was selected or nil if no tab was selected.
+---@type fun(tabPanel: element): element Returns an element of the tab if a tab was selected or nil if no tab was selected.
 function guiGetSelectedTab() end
 
 ---@type fun(tabPanel: element, theTab: element): boolean Returns true if the selected tab was changed to a new one successfully, false otherwise.

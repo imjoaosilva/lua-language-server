@@ -43,15 +43,15 @@ function getSoundLevelData() end
 ---@type fun(): boolean Returns true if the player has the map visible
 function isPlayerMapVisible() end
 
----@alias getSoundMetaTags_syntax_1 (fun(sound: sound): {[soundMetaTags]?: string} | false)
----@alias getSoundMetaTags_syntax_2 (fun(sound: sound, format: soundMetaTags): string | false)
+---@alias getSoundMetaTags_syntax_1 (fun(sound: sound): {[soundMetaTags]?: string})
+---@alias getSoundMetaTags_syntax_2 (fun(sound: sound, format: soundMetaTags): string)
 ---@type getSoundMetaTags_syntax_1 | getSoundMetaTags_syntax_2 Returns a table, but only a string if format is given, with all data available (keys are listed below) for the sound if successful, false otherwise. If any data is unavailable then the associated key is not written to the table.
 function getSoundMetaTags() end
 
----@type fun(creator: element, weaponType: projectileId, posX?: number, posY?: number, posZ?: number, force?: number, target?: element, rotX?: number, rotY?: number, rotZ?: number, velX?: number, velY?: number, velZ?: number, model?: integer): projectile | false Returns a projectile element if projectile creation was successful. Returns false if unable to create a projectile (wrong weapon ID or projectiles limit was reached).
+---@type fun(creator: element, weaponType: projectileId, posX?: number, posY?: number, posZ?: number, force?: number, target?: element, rotX?: number, rotY?: number, rotZ?: number, velX?: number, velY?: number, velZ?: number, model?: integer): projectile Returns a projectile element if projectile creation was successful. Returns false if unable to create a projectile (wrong weapon ID or projectiles limit was reached).
 function createProjectile() end
 
----@type fun(sound: sound, iSamples: 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384, iBands?: integer): waveData:{[integer]: number} | false Returns a table of iSamples/2 (or iBands if iBands is used) floats representing the current audio frame. Returns false if the sound is not playing yet or hasn't buffered in the case of streams.
+---@type fun(sound: sound, iSamples: 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384, iBands?: integer): waveData:{[integer]: number} Returns a table of iSamples/2 (or iBands if iBands is used) floats representing the current audio frame. Returns false if the sound is not playing yet or hasn't buffered in the case of streams.
 function getSoundFFTData() end
 
 ---@type fun(sound: sound): beatsPerMinute: integer Returns the beats per minute of the given sound.
@@ -72,7 +72,7 @@ function getSFXStatus() end
 ---@type fun(id: radioChannelId): radioChannelName Returns a string containing the station name if successful
 function getRadioChannelName() end
 
----@type fun(sound: sound, iSamples: 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384): waveData:{[integer]: number} | false Returns a table of iSamples floats representing the current audio frame waveform, starting from index 0. Returns false if the sound is not playing yet or hasn't buffered in the case of streams.
+---@type fun(sound: sound, iSamples: 256 | 512 | 1024 | 2048 | 4096 | 8192 | 16384): waveData:{[integer]: number} Returns a table of iSamples floats representing the current audio frame waveform, starting from index 0. Returns false if the sound is not playing yet or hasn't buffered in the case of streams.
 function getSoundWaveData() end
 
 ---@type fun(theSound: sound): number Returns an float value indicating the playback speed of the sound element. Default sound playback speed is 1.0.
@@ -84,8 +84,8 @@ function isSoundPaused() end
 ---@type fun(theSound: sound): number Returns a float representing the volume level of the sound element
 function getSoundVolume() end
 
----@alias playSound_syntax_1 fun(soundPath: string, looped?: boolean): sound | false
----@alias playSound_syntax_2 fun(soundURL: string, looped?: boolean, throttled?: boolean): sound | false
+---@alias playSound_syntax_1 fun(soundPath: string, looped?: boolean): sound
+---@alias playSound_syntax_2 fun(soundURL: string, looped?: boolean, throttled?: boolean): sound
 ---@type playSound_syntax_1 | playSound_syntax_2 Returns a sound element if the sound was successfully created
 function playSound() end
 
@@ -116,8 +116,8 @@ function isPedTargetingMarkerEnabled() end
 ---@type fun(theSound: element, speed: number): boolean Returns true if the sound element playback speed was successfully changed
 function setSoundSpeed() end
 
----@alias playSound3D_syntax_1 fun(soundPath: string, x: number, y: number, z: number, looped?: boolean): sound | false
----@alias playSound3D_syntax_2 fun(soundURL: string, x: number, y: number, z: number, looped?: boolean, throttled?: boolean): sound | false
+---@alias playSound3D_syntax_1 fun(soundPath: string, x: number, y: number, z: number, looped?: boolean): sound
+---@alias playSound3D_syntax_2 fun(soundURL: string, x: number, y: number, z: number, looped?: boolean, throttled?: boolean): sound
 ---@type playSound3D_syntax_1 | playSound3D_syntax_2 Returns a sound element if the sound was successfully created
 function playSound3D() end
 
@@ -133,16 +133,16 @@ function setSoundMaxDistance() end
 ---@type fun(sound: sound): integer Returns an integer of the minimum distance
 function getSoundMinDistance() end
 
----@alias playSFX_syntax_1 (fun(audioContainer: specialEffectContainerName, bankId: integer, soundId: integer, looped?: boolean): sound | false)
----@alias playSFX_syntax_2 (fun(audioContainer: "radio", radioStation: radioStationName, trackId: integer, looped?: boolean): sound | false)
+---@alias playSFX_syntax_1 (fun(audioContainer: specialEffectContainerName, bankId: integer, soundId: integer, looped?: boolean): sound)
+---@alias playSFX_syntax_2 (fun(audioContainer: "radio", radioStation: radioStationName, trackId: integer, looped?: boolean): sound)
 ---@type playSFX_syntax_1 | playSFX_syntax_2 Returns a sound element if the sound was successfully created. It can fail if the original files are missing.
 function playSFX() end
 
 ---@type fun(theSound: element): number Returns a float value indicating the seek position of the sound element in seconds.
 function getSoundPosition() end
 
----@alias playSFX3D_syntax_1 (fun(audioContainer: specialEffectContainerName, bankId: integer, soundId: integer, x: number, y: number, z: number, looped?: boolean): sound | false)
----@alias playSFX3D_syntax_2 (fun(audioContainer: "radio", radioStation: radioStationName, trackId: integer, x: number, y: number, z: number, looped?: boolean): sound | false)
+---@alias playSFX3D_syntax_1 (fun(audioContainer: specialEffectContainerName, bankId: integer, soundId: integer, x: number, y: number, z: number, looped?: boolean): sound)
+---@alias playSFX3D_syntax_2 (fun(audioContainer: "radio", radioStation: radioStationName, trackId: integer, x: number, y: number, z: number, looped?: boolean): sound)
 ---@type playSFX3D_syntax_1 | playSFX3D_syntax_2 Returns a sound element if the sound was successfully created. It can fail if the original files are missing.
 function playSFX3D() end
 
@@ -244,7 +244,7 @@ function fxAddGlass() end
 ---@type (fun(theElement: element): false) | (fun(theElement: element): min_x: number, min_y: number, min_z: number, max_x: number, max_y: number, max_z: number) Returns min x, min y, min z, max x, max y, max z if the passed element is valid and streamed in, false otherwise.
 function getElementBoundingBox() end
 
----@type fun(width: integer, height: integer, isLocal: boolean, transparent?: boolean): browser | false Returns a texture of the browser if it was created successfully, false otherwise. Returns also false, if the user disabled remote pages and isLocal was set to false.
+---@type fun(width: integer, height: integer, isLocal: boolean, transparent?: boolean): browser Returns a texture of the browser if it was created successfully, false otherwise. Returns also false, if the user disabled remote pages and isLocal was set to false.
 function createBrowser() end
 
 --[[
@@ -430,7 +430,7 @@ function createSWATRope() end
 ---@type fun(garageId: garageId): x: number, y: number, z: number Returns three floats indicating the size of the garage
 function getGarageSize() end
 
----@type fun(commandControl: string | controlName): {[keyName]: "down" | "up"} | false If one or more keys are bound to the specified control or console command, a table is returned indexed by the names of the keys and containing key states as values. If no keys are bound or an invalid name was passed, returns false.
+---@type fun(commandControl: string | controlName): {[keyName]: "down" | "up"} If one or more keys are bound to the specified control or console command, a table is returned indexed by the names of the keys and containing key states as values. If no keys are bound or an invalid name was passed, returns false.
 function getBoundKeys() end
 
 ---@type fun(keyName: keyName): boolean Returns true if the specified key is pressed
@@ -674,7 +674,7 @@ function getCursorAlpha() end
 ---@type fun(theKey: keyName, keyState: keyState): { [string]?: controlName } Returns a table of the commands bound on that key.
 function getCommandsBoundToKey() end
 
----@type fun(command: string): keyName | false Returns a string of first key binded to current command.
+---@type fun(command: string): keyName Returns a string of first key binded to current command.
 function getKeyBoundToCommand() end
 
 ---@type fun(control: controlName, rawValue?: boolean): number Returns a float between 0 and 1 indicating the amount the control is pressed.
@@ -692,7 +692,7 @@ function getLocalization() end
 ---@type fun(theText: string | number): boolean Returns true if the text in the clip board was set correctly.
 function setClipboard() end
 
----@type (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: false): waterLevel: number | false) | (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: true): waterLevel: number) | (fun(waterElement: water): waterLevel: number) Returns an integer of the water level if the localPlayer/position is near the water (-3 to 20 on the Z coordinate) else false if there's no water near the localPlayer/position.
+---@type (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: false): waterLevel: number) | (fun(posX: number, posY: number, posZ: number, ignoreDistanceToWaterThreshold: true): waterLevel: number) | (fun(waterElement: water): waterLevel: number) Returns an integer of the water level if the localPlayer/position is near the water (-3 to 20 on the Z coordinate) else false if there's no water near the localPlayer/position.
 function getWaterLevel() end
 
 ---@type fun(): boolean Returns true if water is drawn last in the rendering order
@@ -809,7 +809,7 @@ function setWorldSoundEnabled() end
 ---@type fun(goggleEffect: goggleEffect, noiseEnabled?: boolean): boolean Returns true if the effect was set correctly.
 function setCameraGoggleEffect() end
 
----@type fun(theSound: sound): number | false Returns a float value indicating the buffer playback length of the sound in seconds or false if the sound is not a stream.
+---@type fun(theSound: sound): number Returns a float value indicating the buffer playback length of the sound in seconds or false if the sound is not a stream.
 function getSoundBufferLength() end
 
 ---@alias getObjectProperty_all (fun(theObject: object, property: 'all' ): {mass: number, turn_mass: number, air_resistance: number, elasticity: number, center_of_mass: Vector3, buoyancy: number})
@@ -987,7 +987,7 @@ function getDiscordRichPresenceUserID() end
 ---@type fun(txdId: integer): boolean Returns true if the TXD was successfully freed
 function engineFreeTXD() end
 
----@type fun(name: string): id: integer | false Returns an integer of the TXD ID that was available to be assigned to game models, false if no free TXD ID available. Do not rely on the id numbers returned being consistent across multiple clients or multiple runs of resources.
+---@type fun(name: string): id: integer Returns an integer of the TXD ID that was available to be assigned to game models, false if no free TXD ID available. Do not rely on the id numbers returned being consistent across multiple clients or multiple runs of resources.
 function engineRequestTXD() end
 
 ---@type fun(modelId: integer): boolean Returns true if this function succeeds
@@ -996,7 +996,7 @@ function engineResetModelTXDID() end
 ---@type fun(modelId: integer, txdId: integer): boolean Returns true if this function succeeds
 function engineSetModelTXDID() end
 
----@type fun(theFile: file, verifyContents?: boolean): string | nil Returns the bytes that were read from the file, but only if verification was disabled or if the checksum comparison succeeded.
+---@type fun(theFile: file, verifyContents?: boolean): string Returns the bytes that were read from the file, but only if verification was disabled or if the checksum comparison succeeded.
 function fileGetContents() end
 
 ---@type fun(ped: ped | player): boolean Returns true when the voice was successfully reset
@@ -1094,7 +1094,7 @@ function resetShakeCamera() end
 * Returns false if the vehicle has no entry points.
 * Returns the following data when the vehicle is streamed out:  { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } }
 ]]
----@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]:  {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}} | false
+---@type fun(theVehicle: vehicle): {[1]: {[1]: number, [2]: number, [3]: number, [4]: number}, [2]:  {[1]: number, [2]: number, [3]: number, [4]: number}, [3]: {[1]: number, [2]: number, [3]: number, [4]: number}, [4]: {[1]: number, [2]: number, [3]: number, [4]: number}}
 function getVehicleEntryPoints() end
 
 ---@type fun(state: boolean): true
@@ -1129,7 +1129,7 @@ function getElementBoneQuaternion() end
 ---@type resetWorldProperties_client | resetWorldProperties_server
 function resetWorldProperties() end
 
----@type fun(theElement: ped | player | vehicle | object ): number | false
+---@type fun(theElement: ped | player | vehicle | object ): number
 function getElementLighting() end
 
 --- Note: This function always returns true for spraycan and fire extinguisher.<br>

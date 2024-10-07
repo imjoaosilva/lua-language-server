@@ -30,19 +30,19 @@ function getDevelopmentMode() end
 function setDevelopmentMode() end
 
 ---@nodiscard
----@type fun(filePath: string, readOnly?: boolean): xmlnode: xmlnode | false Returns the root xmlnode object of an xml file if successful
+---@type fun(filePath: string, readOnly?: boolean): xmlnode: xmlnode Returns the root xmlnode object of an xml file if successful
 function xmlLoadFile() end
 
 --[[
 	(Note: nil value will delete the attribute)
 ]]
----@type fun(node: xmlnode, name: string, value: string | number | nil): boolean Returns true if the attribute was set successfully
+---@type fun(node: xmlnode, name: string, value: string | number): boolean Returns true if the attribute was set successfully
 function xmlNodeSetAttribute() end
 
 ---@type fun(): number Returns a float containing the max aircraft height.
 function getAircraftMaxHeight() end
 
----@type fun(theXMLNode: xmlnode): string | false Returns the value of the node as a string if it was received successfully
+---@type fun(theXMLNode: xmlnode): string Returns the value of the node as a string if it was received successfully
 function xmlNodeGetValue() end
 
 --- Serverside
@@ -222,15 +222,14 @@ function isCursorShowing() end
 ---@type showCursor_server | showCursor_client Returns true if the player's cursor was shown or hidden successfully
 function showCursor() end
 
---- removeEventHandler
---- Type: shared
---- @param eventName Events
---- @param attachedTo element
---- @param handlerFunction function
---- @return boolean
-function removeEventHandler(eventName, attachedTo, handlerFunction) end
+--- Serverside
+---@alias removeEventHandler_server fun(eventName: eventName_server, attachedTo: element, functionVar: function): boolean
+--- Clientside
+---@alias removeEventHandler_client fun(eventName: eventName_client, attachedTo: element, functionVar: function): boolean
+---@type removeEventHandler_server | removeEventHandler_client Returns true if the event handler was removed successfully. Returns false if the specified event handler could not be found.
+function removeEventHandler() end
 
----@type fun(node: xmlnode, name: string): string | false Returns the attribute in string form or false, if the attribute is not defined.
+---@type fun(node: xmlnode, name: string): string Returns the attribute in string form or false, if the attribute is not defined.
 function xmlNodeGetAttribute() end
 
 ---@type fun(theXMLNode: xmlnode): boolean Returns true if the xml node was successfully destroyed
@@ -342,7 +341,7 @@ function createElement() end
 function getTrainDirection() end
 
 ---@nodiscard
----@type fun(filePath: string): file | false If successful, returns a file handle
+---@type fun(filePath: string): file If successful, returns a file handle
 function fileCreate() end
 
 ---@type fun(theElement: element, enabled: boolean): boolean Returns true, if the propagation behaviour has been changed successfully
@@ -372,7 +371,7 @@ function createWater() end
 ---@type createExplosion_server | createExplosion_client Returns true if the explosion was created.
 function createExplosion() end
 
----@type fun(id: string, index?: integer): element | false Returns the element with the given ID, or false if no such element exists.
+---@type fun(id: string, index?: integer): element Returns the element with the given ID, or false if no such element exists.
 function getElementByID() end
 
 ---@see pedId
@@ -392,7 +391,7 @@ function setLowLODElement() end
 ---@type fun(eventName: string, allowRemoteTrigger?: boolean): boolean Returns true if the event was added successfully
 function addEvent() end
 
----@type fun(theElement: element): element | false Returns the element that the chosen element is attached to, or false if the element isn't attached to another element.
+---@type fun(theElement: element): element Returns the element that the chosen element is attached to, or false if the element isn't attached to another element.
 function getElementAttachedTo() end
 
 ---@type fun(): wasCancelled: boolean Returns true if the event was cancelled, false if it wasn't
@@ -410,7 +409,7 @@ function getElementHealth() end
 ---@type setElementData_server | setElementData_shared Returns true if the data was set successfully
 function setElementData() end
 
----@type fun(parent: element, index: integer): element | false Returns the requested element if it exists, or false if it doesn't.
+---@type fun(parent: element, index: integer): element Returns the requested element if it exists, or false if it doesn't.
 function getElementChild() end
 
 ---@type fun(theFile: file): boolean Returns true if succeeded
@@ -432,7 +431,7 @@ function fileGetSize() end
 function fileIsEOF() end
 
 ---@nodiscard
----@type fun(filePath: string, readOnly?: boolean): file | false If successful, returns a file handle for the file. Otherwise returns false (f.e. if the file doesn't exist).
+---@type fun(filePath: string, readOnly?: boolean): file If successful, returns a file handle for the file. Otherwise returns false (f.e. if the file doesn't exist).
 function fileOpen() end
 
 ---@type fun(theFile: file, count: integer): string Returns the bytes that were read in a string.
@@ -547,7 +546,7 @@ function getTrainSpeed() end
 ---@type fun(theTeam: team): friendlyFire: boolean Returns true if friendly fire is on for the specified team
 function getTeamFriendlyFire() end
 
----@type fun(teamName: string): team: team | false Returns the team element if it was found
+---@type fun(teamName: string): team: team Returns the team element if it was found
 function getTeamFromName() end
 
 ---@type fun(data: string): string Returns the decrypted data from base64 representation of the encrypted block if the decryption process was successfully completed
@@ -615,7 +614,7 @@ function createRadarArea() end
 ---@type fun(thePed: ped, state: boolean): boolean Returns true if the driveby state could be changed
 function setPedDoingGangDriveby() end
 
----@type fun(thePed: ped): vehicle | false Returns the vehicle that the specified ped is in, or false if the ped is not in a vehicle.
+---@type fun(thePed: ped): vehicle Returns the vehicle that the specified ped is in, or false if the ped is not in a vehicle.
 function getPedOccupiedVehicle() end
 
 ---@type fun(thePed: ped, weaponSlot?: weaponSlotId): integer Returns an int containing the total amount of ammo for the specified ped's weapon, or 0 if the ped specified is invalid.
@@ -719,10 +718,10 @@ function isElement() end
 ---@type fun(): pedId[] Returns a table with all valid ped models.
 function getValidPedModels() end
 
----@type fun(thePed: ped): vehicleSeatId | false Returns an integer containing the number of the seat that the ped is currently in. false if the ped is on foot.
+---@type fun(thePed: ped): vehicleSeatId Returns an integer containing the number of the seat that the ped is currently in. false if the ped is on foot.
 function getPedOccupiedVehicleSeat() end
 
----@type fun(thePed: ped): element | false Returns the element that's being targeted, or false if there isn't one.
+---@type fun(thePed: ped): element Returns the element that's being targeted, or false if there isn't one.
 function getPedTarget() end
 
 ---@type fun(thePed: ped, stat: pedStatId): number Returns the value of the requested statistic.
@@ -785,7 +784,7 @@ function setElementModel() end
 ---@type fun(): number Returns a float containing the max jetpack height.
 function getJetpackMaxHeight() end
 
----@type fun(thePlayer: player): team | false Returns a team element representing the team the player is on, false if the player is not part of a team.
+---@type fun(thePlayer: player): team Returns a team element representing the team the player is on, false if the player is not part of a team.
 function getPlayerTeam() end
 
 ---@type fun(theXMLNode: xmlnode, value: string, setCDATA?: boolean): boolean Returns true if value was successfully set
@@ -858,7 +857,7 @@ function xmlUnloadFile() end
 function detachTrailerFromVehicle() end
 
 ---@nodiscard
----@type fun(filePath: string, rootNodeName: string): xmlnode | false Returns the root xmlnode object of the new XML file if successful, or false otherwise.
+---@type fun(filePath: string, rootNodeName: string): xmlnode Returns the root xmlnode object of the new XML file if successful, or false otherwise.
 function xmlCreateFile() end
 
 ---@type fun(thePlayer: player): integer Returns the ping as an integer
@@ -942,7 +941,7 @@ function setFogDistance() end
 ---@type getMoonSize_default | getMoonSize_ifSet Returns a integer being the moon size that is currently set, depending on which side it is used.
 function getMoonSize() end
 
----@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode | false Returns the xmlnode of the copy if the node was successfully copied, false if invalid arguments were passed.
+---@type fun(nodeToCopy: xmlnode, newFilePath: string): xmlnode Returns the xmlnode of the copy if the node was successfully copied, false if invalid arguments were passed.
 function xmlCopyFile() end
 
 --[[
@@ -952,7 +951,7 @@ function xmlCopyFile() end
 ---@type fun(thePed: ped): pedWalkStyleId
 function getPedWalkingStyle() end
 
----@type fun(resourceName: string): resource | false Returns the resource with the specified name, or false if no resource of that name exists. Note that clientside this will also return false for resources that are in the loaded state, since the client is unaware of resources that have not been started.
+---@type fun(resourceName: string): resource Returns the resource with the specified name, or false if no resource of that name exists. Note that clientside this will also return false for resources that are in the loaded state, since the client is unaware of resources that have not been started.
 function getResourceFromName() end
 
 --- Serverside
@@ -1005,7 +1004,7 @@ function createPickup() end
 ---@type fun(): maxVelocity: number Returns a float being the max velocity that is currently set, depending on which side it is used.
 function getAircraftMaxVelocity() end
 
----@type fun(playerName: string): player | false Returns a player element for the player with the nickname provided. If there is no player with that name, false is returned.
+---@type fun(playerName: string): player Returns a player element for the player with the nickname provided. If there is no player with that name, false is returned.
 function getPlayerFromName() end
 
 ---@type fun(theTeam: team): r: integer, g: integer, b: integer Returns 3 integers representing the red, green, and blue color components of the team if it's valid
@@ -1050,7 +1049,7 @@ function getCameraInterior() end
 --[[
 	Returns two integers indicating the weather type that is currently active. The first integer says what weather is currently considered to be active. The second integer is the weather id that is being blended into if any, otherwise it is nil.
 ]]
----@type fun(): weatherId: integer, weatherBlendId: integer | nil
+---@type fun(): weatherId: integer, weatherBlendId: integer
 function getWeather() end
 
 --[[
@@ -1079,9 +1078,9 @@ function setCameraMatrix() end
 function inspect() end
 
 --- Serverside
----@alias getCameraTarget_server fun(thePlayer: player): element | false
+---@alias getCameraTarget_server fun(thePlayer: player): element
 --- Clientside
----@alias getCameraTarget_client fun(): element | false
+---@alias getCameraTarget_client fun(): element
 ---@type getCameraTarget_server | getCameraTarget_client Returns an element of the target or false if there is no target
 function getCameraTarget() end
 
@@ -1252,7 +1251,7 @@ function setSkyGradient() end
 function getTimerDetails() end
 
 ---@alias getRealTime_default fun(localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer }
----@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer } | false
+---@alias getRealTime_seconds fun(seconds: integer, localTime?: boolean): {second: seconds, minute: minutes, hour: hours, monthday: monthdays, month: months, year: integer, weekday: weekdays, yearday: integer, isdst: integer, timestamp: integer }
 ---@type getRealTime_default | getRealTime_seconds Returns a table of substrings with different time format or false if the seconds argument is out of range.
 function getRealTime() end
 
@@ -1349,7 +1348,7 @@ function getResourceName() end
 ---@type fun(theRadararea: radararea): red: integer, green: integer, blue: integer, alpha: integer Returns four integers in RGBA format (red, green, blue, alpha), with a maximum value of 255 for each. Alpha decides transparency where 255 is opaque and 0 is transparent.
 function getRadarAreaColor() end
 
----@type fun(text: string, tokenNumber: integer, separatingCharacter: string | ASCII): string | false Returns a string containing the token if it exists, false otherwise.
+---@type fun(text: string, tokenNumber: integer, separatingCharacter: string | ASCII): string Returns a string containing the token if it exists, false otherwise.
 function gettok() end
 
 --- If default
@@ -1378,7 +1377,7 @@ function getThisResource() end
 ---@type addCommandHandler_server | addCommandHandler_client Returns true if the command handler was added successfully, false otherwise.
 function addCommandHandler() end
 
----@type fun(filePath: string): xmlnode | false Returns the root node of the specified configuration file. If the file is corrupted, not defined in the meta file or doesn't exist, returns false.
+---@type fun(filePath: string): xmlnode Returns the root node of the specified configuration file. If the file is corrupted, not defined in the meta file or doesn't exist, returns false.
 function getResourceConfig() end
 
 ---@type fun(enabled: boolean): boolean Returns true if the setting was set correctly
@@ -1398,9 +1397,9 @@ function setGravity() end
 
 ---@alias fetchRemoteOptions { queueName?: string, connectionAttempts?: integer, connectTimeout?: integer, postData?: string, postIsBinary?: boolean, method?: "GET" | "POST", headers?: {[string]: any}, maxRedirects?: integer, username?: string, password?: string, formFields?: {[string]: any}}
 --- Without options
----@alias fetchRemote_syntaxWithoutOptions fun(URL: string, callbackFunction: function, callbackArguments?: table): request | false
+---@alias fetchRemote_syntaxWithoutOptions fun(URL: string, callbackFunction: function, callbackArguments?: table): request
 --- With options
----@alias fetchRemote_syntaxWithOptions fun(URL: string, options: fetchRemoteOptions, callbackFunction: function, callbackArguments?: table): request | false
+---@alias fetchRemote_syntaxWithOptions fun(URL: string, options: fetchRemoteOptions, callbackFunction: function, callbackArguments?: table): request
 --[[
 	Using version syntax from  1.5.4-9.11342 + 1.5.4-9.11413. Because the other variant has too many sub-variations
 ]]
@@ -1428,7 +1427,7 @@ function resetMoonSize() end
 ---@type setWeaponAmmo_server | setWeaponAmmo_client Returns true on success
 function setWeaponAmmo() end
 
----@type fun(theResource: resource): element | false Returns an element of the resource's dynamic element root if the resource specified was valid and active (currently running), false otherwise.
+---@type fun(theResource: resource): element Returns an element of the resource's dynamic element root if the resource specified was valid and active (currently running), false otherwise.
 function getResourceDynamicElementRoot() end
 
 ---@type fun(): boolean Returns true if the heat haze was reset correctly
@@ -1487,9 +1486,9 @@ function getLatentEventStatus() end
 function fileGetPos() end
 
 --- Serverside
----@alias getKeyBoundToFunction_server (fun(thePlayer: player, theFunction: function): string | false)
+---@alias getKeyBoundToFunction_server (fun(thePlayer: player, theFunction: function): string)
 --- Clientside
----@alias getKeyBoundToFunction_client (fun(theFunction: function): string | false)
+---@alias getKeyBoundToFunction_client (fun(theFunction: function): string)
 ---@type getKeyBoundToFunction_server | getKeyBoundToFunction_client Returns a string of the first key the function was bound to.
 function getKeyBoundToFunction() end
 
@@ -1565,7 +1564,7 @@ function utfCode() end
 ---@type fun(theString: string): integer Returns an integer if the function was successful
 function utfLen() end
 
----@type fun(theString: string, position: integer): integer | false Returns an integer if the function was successful, false otherwise.
+---@type fun(theString: string, position: integer): integer Returns an integer if the function was successful, false otherwise.
 function utfSeek() end
 
 ---@type fun(theString: string, start: integer, end: integer): string Returns a string if the function was successful. Returns an empty string if out of bounds.
@@ -1666,7 +1665,7 @@ function isVehicleOnGround() end
 ---@type fun(train: vehicle): integer
 function getTrainTrack() end
 
----@type fun(train: vehicle): number | false Returns a float that represents how along the track it is, false if there is problem with train element.
+---@type fun(train: vehicle): number Returns a float that represents how along the track it is, false if there is problem with train element.
 function getTrainPosition() end
 
 --[[
@@ -1683,7 +1682,7 @@ function getVehicleColor() end
 ---@type fun(theVehicle: vehicle, slot?: vehicleSlotId): vehicleUpgradeId[] Returns a table with all the compatible upgrades
 function getVehicleCompatibleUpgrades() end
 
----@type fun(theVehicle: vehicle): player | ped | false Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise.
+---@type fun(theVehicle: vehicle): player | ped Returns a player object, if there isn't a driver, it will search the 'trailer chain' for the front driver, false otherwise.
 function getVehicleController() end
 
 ---@see vehicleDoorId
@@ -1699,7 +1698,7 @@ Returns
 * Returns true if landing gear is down, false if the landing gear is up.
 * Returns nil if the vehicle has no landing gear, or is invalid.
 ]]
----@type fun(theVehicle: vehicle): boolean | nil
+---@type fun(theVehicle: vehicle): boolean
 function getVehicleLandingGearDown() end
 
 ---@see vehicleLightId
@@ -1719,7 +1718,7 @@ function getVehicleName() end
 function getVehicleOccupant() end
 
 ---@see vehicleSeatId
----@type fun(theVehicle: vehicle): {[vehicleSeatId]: player | ped | nil } Returns a table with seat ID as an index and the occupant as an element
+---@type fun(theVehicle: vehicle): {[vehicleSeatId]: player | ped } Returns a table with seat ID as an index and the occupant as an element
 function getVehicleOccupants() end
 
 ---@see vehicleOverrideLightStateId
@@ -1748,10 +1747,10 @@ function getVehiclePlateText() end
 ---@type fun(theVehicle: vehicle): boolean Returns true if the sirens are turned on for the specified vehicle, false if the sirens are turned off for the specified vehicle, if the vehicle doesn't have sirens or if invalid arguments are specified.
 function getVehicleSirensOn() end
 
----@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is towing, false if it isn't towing a vehicle.
+---@type fun(theVehicle: vehicle): vehicle Returns the vehicle that theVehicle is towing, false if it isn't towing a vehicle.
 function getVehicleTowedByVehicle() end
 
----@type fun(theVehicle: vehicle): vehicle | false Returns the vehicle that theVehicle is being towed by. false if it isn't being towed.
+---@type fun(theVehicle: vehicle): vehicle Returns the vehicle that theVehicle is being towed by. false if it isn't being towed.
 function getVehicleTowingVehicle() end
 
 ---@deprecated Use getElementAngularVelocity instead
@@ -1765,7 +1764,7 @@ function getVehicleTurretPosition() end
 function getVehicleType() end
 
 ---@see vehicleSlotId
----@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId | false Returns an integer with the upgrade on the slot if correct arguments were passed
+---@type fun(theVehicle: vehicle, slot: vehicleSlotId): vehicleUpgradeId Returns an integer with the upgrade on the slot if correct arguments were passed
 function getVehicleUpgradeOnSlot() end
 
 ---@type fun(theVehicle: vehicle): vehicleUpgradeId[] Returns a table of all the upgrades on each slot of a vehicle, which may be empty
@@ -1802,7 +1801,7 @@ function getVehicleNameFromModel() end
 ---@type (fun(theVehicle: vehicle): variant1: vehicleVariantId, variant1: vehicleVariantId)
 function getVehicleVariant() end
 
----@type fun(theVehicle: vehicle): {SirenCount: integer, SirenType: sirenTypeId, Flags: { ["360"] : boolean, DoLOSCheck: boolean, UseRandomiser: boolean, Silent: boolean}} | false Returns a table with the siren count, siren type and a sub table for the four flags. False otherwise.
+---@type fun(theVehicle: vehicle): {SirenCount: integer, SirenType: sirenTypeId, Flags: { ["360"] : boolean, DoLOSCheck: boolean, UseRandomiser: boolean, Silent: boolean}} Returns a table with the siren count, siren type and a sub table for the four flags. False otherwise.
 function getVehicleSirenParams() end
 
 ---@type fun(theVehicle: vehicle): {x: number, y: number, z: number, Red: integer, Green: integer, Blue: integer, Alpha: integer, Min_Alpha: integer }[]
@@ -2011,7 +2010,7 @@ function xmlCreateChild() end
 * `tagName`: This is the name of the child node you wish to find (case-sensitive).
 * `index`: This is the 0-based index of the node you wish to find. For example, to find the 5th subnode with a particular name, you would use 4 as the index value. To find the first occurence, use 0.
 ]]
----@type fun(parent: xmlnode, tagName: string, index: integer): xmlnode | false Returns an xmlnode if the node was found, false otherwise.
+---@type fun(parent: xmlnode, tagName: string, index: integer): xmlnode Returns an xmlnode if the node was found, false otherwise.
 function xmlFindChild() end
 
 ---@type fun(node: xmlnode): {[string]: string|number} If successful, returns a table with as keys the names of the attributes and as values the corresponding attribute values. If the node has no attributes, returns an empty table. In case of failure, returns false.
@@ -2020,13 +2019,13 @@ function xmlNodeGetAttributes() end
 --[[
 	If index isn't specified, returns a table containing all child nodes. If index is specified, returns the corresponding child node if it exists. If no nodes are found, it returns an empty table. Returns false in case of failure.
 ]]
----@type (fun(parent: xmlnode, index: integer): xmlnode | false) | (fun(parent: xmlnode): xmlnode[])
+---@type (fun(parent: xmlnode, index: integer): xmlnode) | (fun(parent: xmlnode): xmlnode[])
 function xmlNodeGetChildren() end
 
 ---@type fun(node: xmlnode): string Returns the tag name of the node if successful
 function xmlNodeGetName() end
 
----@type fun(node: xmlnode): xmlnode | false Returns the parent node of the specified node if successful. Returns false if the specified node is the root node
+---@type fun(node: xmlnode): xmlnode Returns the parent node of the specified node if successful. Returns false if the specified node is the root node
 function xmlNodeGetParent() end
 
 ---@type fun(node: xmlnode, name: string): boolean Returns true if successful
@@ -2147,7 +2146,7 @@ function setPlayerHudComponentVisible() end
 ---@type fun(theResource?: resource): request[] Returns a table with all requests
 function getRemoteRequests() end
 
----@type fun(theRequest: request, postDataLength?: integer, includeHeaders?: boolean): {bytesReceived: number, bytesTotal: number, currentAttempt: integer, type: "fetch" | "call", url: string, resource: resource, queue: string, method: "GET" | "POST", connectionAttempts: integer, connectionTimeout: integer, postData: string, headers: string} | false Returns a table when valid, false otherwise
+---@type fun(theRequest: request, postDataLength?: integer, includeHeaders?: boolean): {bytesReceived: number, bytesTotal: number, currentAttempt: integer, type: "fetch" | "call", url: string, resource: resource, queue: string, method: "GET" | "POST", connectionAttempts: integer, connectionTimeout: integer, postData: string, headers: string} Returns a table when valid, false otherwise
 function getRemoteRequestInfo() end
 
 ---@type fun(theRequest: request): boolean Returns true on success, false when invalid request was provided
@@ -2162,17 +2161,10 @@ function isOOPEnabled() end
 ---@type fun(objectToReference: any): integer Returns an int if the reference were successfully created.
 function ref() end
 
---- tocolor
---- Type: shared
----@return any
----@param red integer
----@param green integer
----@param blue integer
----@param alpha? integer
-function tocolor(red, green, blue, alpha)
-end
+---@type fun(red: integer, green: integer, blue: integer, alpha?: integer): color Returns a single value representing the color.
+function tocolor() end
 
----@type fun(xmlString: string): xmlnode | false Returns the root xmlnode object of an xml string if successful, or false otherwise (invalid XML string).
+---@type fun(xmlString: string): xmlnode Returns the root xmlnode object of an xml string if successful, or false otherwise (invalid XML string).
 function xmlLoadString() end
 
 ---@type fun(theElement: element, theMatrix: matrixAsTable): boolean Returns true if the matrix was set succesfully
@@ -2230,16 +2222,16 @@ function setPlayerBlurLevel() end
 
 ---@alias utf8_byte (fun(input: string, startPos?: integer, endPos?: integer ): ...: integer|nil)
 ---@alias utf8_char fun(arg1?: integer, arg2?: integer, arg3?: integer, arg4?: integer, arg5?: integer, arg6?: integer, ...: integer): string
----@alias utf8_charpos (fun(input : string, charpos: integer, offset: integer ): integer | nil, integer | nil) | (fun(input : string, offset?: integer ): integer | nil, integer | nil)
+---@alias utf8_charpos (fun(input : string, charpos: integer, offset: integer ): integer, integer) | (fun(input : string, offset?: integer ): integer, integer)
 ---@alias utf8_escape fun(input: string): string
----@alias utf8_find fun(input: string, pattern: string, startPos?: integer, plain?: boolean): integer | nil, integer | nil
+---@alias utf8_find fun(input: string, pattern: string, startPos?: integer, plain?: boolean): integer, integer
 ---@alias utf8_fold (fun(input: string): string) | (fun(input: integer): integer)
 ---@alias utf8_gmatch fun(input: string, pattern: string): function
 ---@alias utf8_gsub fun(input: string, pattern: string, replace: string | integer | table | function, matchLimit?: integer): string, integer
 ---@alias utf8_insert (fun(input: string, insertPos: integer, substring: string): string) | (fun(input: string, substring: string): string)
 ---@alias utf8_len (fun(input: string, i?: integer, j?: integer): integer)
 ---@alias utf8_lower (fun(input: string): string) | (fun(input: integer): integer)
----@alias utf8_match (fun(input: string, pattern: string, index?: integer): ...: string | nil)
+---@alias utf8_match (fun(input: string, pattern: string, index?: integer): ...: string)
 --[[
 | Value | Meaning |
 |-------|---------|
