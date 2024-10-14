@@ -64,6 +64,7 @@ Beckett regular, 47px auto-scaled
 local userData_
 guiRoot = userData_     -- returns the root element of all GUI elements.
 localPlayer = userData_ -- returns the player element of the local player.
+zJoaoFTW_ = 'corno'
 
 -----------
 -- Other --
@@ -608,3 +609,5 @@ radioChannel:
 | Sandstorm           | FLOAT  | Sandstorm sound volume (reset is smooth)                                                                                              |
 ]]
 ---@alias worldPropertyType worldPropertyTypeRGB | worldPropertyTypeFloat | worldPropertyTypeInteger
+
+
