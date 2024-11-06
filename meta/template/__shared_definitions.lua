@@ -2059,7 +2059,7 @@ function setVehicleHandling() end
 ---@alias encodeString_base64_default fun(algorithm: "base64" | string, input: string, options?: table): string
 -- Base64 With callback
 ---@alias encodeString_base64_callback fun(algorithm: "base64" | string, input: string, options?: table, callback: fun(result: string)): true
----@type encodeString_default | encodeString_callback
+---@type encodeString_default | encodeString_callback | encodeString_base64_default | encodeString_base64_callback
 function encodeString() end
 
 -- Without callback
