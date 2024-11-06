@@ -2055,6 +2055,10 @@ function setVehicleHandling() end
 ---@alias encodeString_default fun(algorithm:  "rsa" | "tea" | "aes128" | string, input: string, options: table): string
 -- With callback
 ---@alias encodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result: string)): true
+-- Base64 Without callback
+---@alias encodeString_base64_default fun(algorithm: "base64" | string, input: string, options?: table): string
+-- Base64 With callback
+---@alias encodeString_base64_callback fun(algorithm: "base64" | string, input: string, options?: table, callback: fun(result: string)): true
 ---@type encodeString_default | encodeString_callback
 function encodeString() end
 
@@ -2062,7 +2066,11 @@ function encodeString() end
 ---@alias decodeString_default fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table): string
 -- With callback
 ---@alias decodeString_callback fun(algorithm: "rsa" | "tea" | "aes128" | string, input: string, options: table, callback: fun(result: string)): true
----@type decodeString_default | decodeString_callback
+-- Base64 Without callback
+---@alias decodeString_base64_default fun(algorithm: "base64" | string, input: string, options?: table): string
+-- Base64 With callback
+---@alias decodeString_base64_callback fun(algorithm: "base64" | string, input: string, options?: table, callback: fun(result: string)): true
+---@type decodeString_default | decodeString_callback | decodeString_base64_default | decodeString_base64_callback
 function decodeString() end
 
 ---@see colShapeTypeId.
